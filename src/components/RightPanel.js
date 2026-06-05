@@ -1,4 +1,4 @@
-import { COMPONENT_META, COMPONENT_TEMPLATES } from "./LeftPanel";
+import { COMPONENT_META } from "./LeftPanel";
 import { useState } from "react";
 
 const inputStyle = {
@@ -444,8 +444,6 @@ function Toggle({ label, checked, onChange, error, required= false }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "7px 0",
-        borderBottom: "1px solid #f1f5f9",
         borderBottom: error ? "1px solid #fecaca" : "1px solid #f1f5f9",
         background: error ? "#fef2f2" : "transparent",
         padding: "7px 6px",
@@ -842,10 +840,10 @@ function ItemSection({
   const isFeed = collection?.id === "feed";
   const isCardStyle = collection?.id === "roku-card-styles";
   const badgeLabel = isFeed ? "Feed" : isCardStyle ? "Card Style" : "Screen";
+  const [tenantDraft, setTenantDraft] = useState({});
+  const [feedContextDraft, setFeedContextDraft]= useState({});
   const badgeColor = collection?.color || "#6366f1";
   const [layoutDraft, setLayoutDraft] = useState({});
-  const [tenantDraft, setTenantDraft] = useState({});
-  const [feedContextDraft, setFeedContextDraft] = useState({});
   const [menuDraft, setMenuDraft] = useState({});
 
   const set = (key, value) => {
@@ -1543,7 +1541,7 @@ function DynamicBlockFields({ local, set, errors = {} }) {
     </>
   );
 }
-
+/*
 function validateHorizontalList(local) {
   const errors = {};
 
@@ -1574,7 +1572,7 @@ function validateGrid(local) {
 
   return errors;
 }
-
+*/
 function FeedCreateForm({
   draft,
   setDraft,
