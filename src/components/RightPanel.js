@@ -843,7 +843,6 @@ function ItemSection({
   const isCardStyle = collection?.id === "roku-card-styles";
   const badgeLabel = isFeed ? "Feed" : isCardStyle ? "Card Style" : "Screen";
   const badgeColor = collection?.color || "#6366f1";
-
   const [layoutDraft, setLayoutDraft] = useState({});
   const [tenantDraft, setTenantDraft] = useState({});
   const [feedContextDraft, setFeedContextDraft] = useState({});
@@ -853,12 +852,7 @@ function ItemSection({
     setLocalItem((p) => ({ ...p, [key]: value }));
   };
 
-  const itemErrors = {};
-  if (isFeed){
-    if (!localItem.name?.trim()) itemErrors.name = "Required";
-    if (!localItem.feed_url?.trim()) itemErrors.feed_url = "Required";
-    if (!localItem.method?.trim()) itemErrors.method = "Required";
-  }
+  
   return (
     <div style={{ padding: "14px 16px 10px", borderBottom: "1px solid #f1f5f9" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
@@ -899,7 +893,7 @@ function ItemSection({
           onChange={(v) =>
             setLocalItem((p) => ({ ...p, name: v, title: v }))
           }
-          error={itemErrors.name}
+          
         />
 
         {!isFeed && !isCardStyle &&(
@@ -908,14 +902,14 @@ function ItemSection({
                 label="Is Home"
                 checked={!!localItem.is_home}
                 onChange={(v) => set("is_home", v)}
-                error={itemErrors.is_home}
+                
             />
 
             <Toggle
                 label="Show Menu"
                 checked={!!localItem.show_menu}
                 onChange={(v) => set("show_menu", v)}
-                error={itemErrors.show_menu}
+              
             />
 
             <RelationField
@@ -1360,7 +1354,7 @@ function ItemSection({
                     label="Feed URL"
                     value={localItem.feed_url ?? ""}
                     onChange={(v) => set("feed_url", v)}
-                    error={itemErrors.feed_url}
+                    
                 />
 
                 <Toggle
@@ -1444,11 +1438,7 @@ function ItemSection({
                 <option value="get">get</option>
                 <option value="post">post</option>
                 </select>
-                {itemErrors.method && (
-                    <div style={{ color:"#ef4444", fontSize:11, marginTop:4 }}>
-                    {itemErrors.method}
-                    </div>
-                )}
+                {}
             </Field>
             {localItem.enable_feed_mapping && (
             <TF
@@ -1615,7 +1605,7 @@ function FeedCreateForm({
         label="Name"
         value={draft.name || ""}
         onChange={(v) => set("name", v)}
-        error={itemErrors.name}
+      
         required
       />
 
