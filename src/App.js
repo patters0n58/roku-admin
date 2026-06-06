@@ -781,33 +781,6 @@ const addColor = (obj, key, value) => {
       }
     }
     
-    const compact = (obj) => {
-      Object.keys(obj).forEach((key) => {
-        if (obj[key] === "") obj[key] = null;
-      });
-      return obj;
-    };
-
-    const textOrNull = (value) =>
-      typeof value === "string" && value.trim() ? value.trim() : null;
-
-    const intOr = (value, fallback = 0) => {
-      const n = Number(value);
-      return Number.isFinite(n) ? Math.floor(n) : fallback;
-    };
-
-    const intOrNull = (value) => {
-      if (value === "" || value === null || value === undefined) return null;
-      const n = Number(value);
-      return Number.isFinite(n) ? Math.floor(n) : null;
-    };
-
-    const boolOrNull = (value) =>
-      typeof value === "boolean" ? value : null;
-
-    const colorOrNull = (value) =>
-      typeof value === "string" && isHex(value) ? value : null;
-
     const cleanBlocks = mergedBlocks.map((block) => {
         const { id, _clientId, _template, ...rest } = block;
 
