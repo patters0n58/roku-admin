@@ -840,11 +840,12 @@ function ItemSection({
   const isFeed = collection?.id === "feed";
   const isCardStyle = collection?.id === "roku-card-styles";
   const badgeLabel = isFeed ? "Feed" : isCardStyle ? "Card Style" : "Screen";
-  const [tenantDraft, setTenantDraft] = useState({});
-  const [feedContextDraft, setFeedContextDraft]= useState({});
+  
   const badgeColor = collection?.color || "#6366f1";
   const [layoutDraft, setLayoutDraft] = useState({});
   const [menuDraft, setMenuDraft] = useState({});
+  const [tenantDraft, setTenantDraft] = useState({});
+  const [feedContextDraft, setFeedContextDraft] = useState({ name: "", tenant: null, feed_context: [] });
 
   const set = (key, value) => {
     setLocalItem((p) => ({ ...p, [key]: value }));
@@ -1812,16 +1813,6 @@ function BlockSection({
   card_type: "card_type_1",
 });
 
-  const [feedContextDraft, setFeedContextDraft] = useState({
-  name: "",
-  tenant: null,
-  feed_context: [],
-});
-
-  const [tenantDraft, setTenantDraft] = useState({
-  name: "",
-  code: "",
-});
   const meta = COMPONENT_META[block.__component] || { label: block.__component, color: "#64748b" };
   const local = {
   ...(BLOCK_DEFAULTS[block.__component] || {}),

@@ -246,16 +246,7 @@ const deleteBtn = {
   opacity: 1,
 };
 
-function Logo() {
-  return (
-    <div style={{
-      width: 26, height: 26, borderRadius: 7, flexShrink: 0,
-      background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: 12, color: "#fff", fontWeight: 800, letterSpacing: "-0.5px",
-    }}>A</div>
-  );
-}
+
 
 function SecLabel({ label, color = "#6366f1" }) {
   return (
