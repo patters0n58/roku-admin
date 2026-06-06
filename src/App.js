@@ -26,9 +26,6 @@ import {
 
 } from "./api/strapi";
 
-const APPS = [
-  { id: "roku", name: "Roku" },
-];
 function tagBlocks(blocks = []) {
   return blocks.map((b, i) => ({
     ...b,
@@ -38,9 +35,9 @@ function tagBlocks(blocks = []) {
 
 export default function App() {
   
+  const selectedApp = "roku";
   const [view, setView] = useState("collections"); 
   const [collection, setCollection] = useState(null);
-  const [selectedApp, setSelectedApp] = useState("roku");
   const [layouts, setLayouts] = useState([]);
   const [tenants, setTenants] = useState([]);
   const [rokuMenus, setRokuMenus] = useState([]);
@@ -48,12 +45,10 @@ export default function App() {
   const [feeds, setFeeds] = useState([]);
   const [feedContexts, setFeedContexts] = useState([]);
   const [cardStyles, setCardStyles] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const [selectedTenant, setSelectedTenant] = useState(null);
   const [selectedLayout, setSelectedLayout] = useState(null);
-  const [screens, setScreens] = useState([]);
   const [selectedPage, setSelectedPage] = useState(null);
   const [localPage, setLocalPage] = useState(null);       
   const [localBlocks, setLocalBlocks] = useState({});  
@@ -92,9 +87,8 @@ export default function App() {
     )
   ) {
     setSelectedLayout(null);
-    setScreens([]);
   }
-}, [selectedTenant, layouts]);
+}, [selectedTenant, layouts, selectedLayout]);
 
   const normalizeCardStyle = (c) => ({
   ...c,
@@ -234,13 +228,8 @@ const normalizePage = (p, feedsList, cardStylesList, feedContextsList) => ({
   _raw: p,
 });
 
-// optional compatibility wrapper for old places still using normalizeBlockRelations
-const normalizeBlockRelations = (block) =>
-  normalizeBlockRelationsWithLists(block, feeds, cardStyles, feedContexts);
-
   useEffect(() => {
   const loadAll = async () => {
-    setLoading(true);
 
     try {
       const [
@@ -289,11 +278,11 @@ const normalizeBlockRelations = (block) =>
       console.error("LOAD ERROR:", e.response?.data || e);
       setPages([]);
     } finally {
-      setLoading(false);
     }
   };
 
   loadAll();
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
   
   const handleSelectCollection = async (col) => {
@@ -302,7 +291,6 @@ const normalizeBlockRelations = (block) =>
   setSelectedPage(null);
   setSelectedBlock(null);
 
-  setLoading(true);
 
   try {
     if (col.id === "roku-card-styles") {
@@ -332,7 +320,6 @@ const normalizeBlockRelations = (block) =>
   );
 }
   } finally {
-    setLoading(false);
   }
 };
   const handleAddPage = () => {
@@ -587,33 +574,6 @@ const handleSelectBlock = (block) => {
   }
 };
 
-const validFonts = [
-  "TinySystemFont",
-  "TinyBoldSystemFont",
-  "SmallerSystemFont",
-  "SmallerBoldSystemFont",
-  "SmallestSystemFont",
-  "SmallestBoldSystemFont",
-  "SmallSystemFont",
-  "SmallBoldSystemFont",
-  "MediumSystemFont",
-  "MediumBoldSystemFont",
-  "LargeSystemFont",
-  "LargeBoldSystemFont",
-  "ExtraLargeSystemFont",
-  "ExtraLargeBoldSystemFont",
-  "BadgeSystemFont",
-];
-
-const normalizeFont = (value) => {
-  if (!value) return "MediumSystemFont";
-
-  const match = validFonts.find(
-    (f) => f.toLowerCase() === String(value).toLowerCase()
-  );
-
-  return match || "MediumSystemFont";
-};
   const validateBlock = (block) => {
   const errors = {};
 
@@ -821,14 +781,6 @@ const addColor = (obj, key, value) => {
       }
     }
     
-    const cleanEmptyStrings = (obj) => {
-      Object.keys(obj).forEach((key) => {
-        if (obj[key] === "") {
-          obj[key] = null;
-        }
-      });
-      return obj;
-    };
     const compact = (obj) => {
       Object.keys(obj).forEach((key) => {
         if (obj[key] === "") obj[key] = null;
@@ -1398,5 +1350,3 @@ const addColor = (obj, key, value) => {
 );
 
 }
-
-
