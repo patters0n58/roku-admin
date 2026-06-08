@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 
-const base = axios.create({ baseURL: "http://localhost:1337/api" });
+const base = axios.create({ baseURL: "https://roku-strapi.onrender.com/api" });
 
 base.interceptors.response.use(
   (res) => res,
