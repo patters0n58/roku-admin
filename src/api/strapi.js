@@ -1,7 +1,8 @@
 import axios from "axios";
 import qs from "qs";
 
-const base = axios.create({ baseURL: "https://roku-strapi.onrender.com/api" });
+const base = axios.create({ baseURL: "process.env.REACT_APP_API_URL"});
+
 
 base.interceptors.response.use(
   (res) => res,
