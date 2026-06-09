@@ -119,70 +119,93 @@ export const COMPONENT_TEMPLATES = [
     bif_frame_bg_image_uri: "",
   },
   {
-    __component: "roku.login",
-    _template: true,
-    name: "",
-    login_template: "login_template_1",
+  __component: "roku.login",
+  _template: true,
+  name: "",
+  login_template: "login_template_1",
+
+  login_template_1: {
     login_url: "",
     register_url: "",
     reset_url: "",
     refresh_url: "",
+
     enable_logo: false,
+
     login_title_text: "Login",
     login_email_placeholder: "Email",
     login_password_placeholder: "Password",
+
     register_title_text: "Sign Up",
     register_email_placeholder: "Email",
     register_first_name_placeholder: "First Name",
     register_last_name_placeholder: "Last Name",
-    register_password_placeholder: "First Password",
+    register_password_placeholder: "Password",
+
     forgot_password_title_text: "Forgot Password",
     forgot_password_email_placeholder: "Email",
+
     login_button_text: "Login",
     register_button_text: "Sign Up",
     forgot_password_button_text: "Forgot Password",
+
     logo_url: "",
     logo_width: 300,
     logo_height: 150,
     logo_translation_left: 200,
     logo_translation_top: 150,
+
     input_box_style: null,
     buttons_style: null,
+
     login_input_boxes_spacing: 0,
     login_buttons_spacing: 0,
+
     register_input_boxes_spacing: 0,
     register_buttons_spacing: 0,
+
     forgot_password_buttons_spacing: 0,
     forgot_password_input_boxes_spacing: 0,
+
     title_font: "MediumSystemFont",
     title_color: "",
+
     sub_title_font: "MediumSystemFont",
     sub_title_color: "",
+
     sub_title_y_offset: 0,
+
     optional_title_1_y_offset: 0,
     optional_title_1_font: "MediumSystemFont",
     optional_title_1_color: "",
+
     optional_title_2_font: "MediumSystemFont",
     optional_title_2_color: "",
     optional_title_2_y_offset: 0,
+
     login_sub_title_text: "",
     login_optional_title_1_text: "",
     login_optional_title_2_text: "",
+
     register_sub_title_text: "",
     register_optional_title_1_text: "",
     register_optional_title_2_text: "",
+
     forgot_password_sub_title_text: "",
     forgot_password_optional_title_1_text: "",
     forgot_password_optional_title_2_text: "",
+
     login_error_text: "",
     register_error_text: "",
     forgot_password_error_text: "",
+
     error_label_translation_left: 0,
     error_label_translation_top: 0,
     error_label_width: 0,
     error_label_font: "MediumSystemFont",
     error_label_color: "",
   },
+}
 ];
 
 export const COMPONENT_META = {

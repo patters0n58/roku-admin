@@ -4,6 +4,16 @@ import qs from "qs";
 
 const base = axios.create({ baseURL: "https://roku-strapi.onrender.com/api"});
 
+base.interceptors.request.use((config) => {
+  const token = localStorage.getItem("jwt");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+}); 
+
 
 base.interceptors.response.use(
   (res) => res,
